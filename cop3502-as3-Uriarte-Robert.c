@@ -1,18 +1,9 @@
-// all-monster-sorts.c - Sort monsters by name and weight.
-
-/* The idea of sorting is simple: take unordered objects, and arrange them in an
-   order.  It has a lot of uses, so there's been a lot of work done with it.  Here,
-   we're going to demonstrate a few of the simpler, more classic sorting techniques.
-   */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
 #include <string.h>
 #include <time.h>
-
-/* Monster structure and helper functions - DO NOT MODIFY THESE. */
 
 typedef struct monster {
 	int id;
@@ -63,11 +54,8 @@ void swap_monsters(monster *list, int i, int j)
     memcpy(list + j, &temp, sizeof(monster));
 }
 
-/* The core comparison function. */
-
 int compare_monsters(monster *m1, monster *m2, int use_name, int use_weight)
 {
-    //YOUR CODE GOES HERE..
     if(use_name == 1){  //Use 1 if we are sorting by name
         return (strcmp(m1->name, m2->name) > 0);
     }
@@ -93,13 +81,8 @@ void check_monster_sort(monster *list, int n, int use_name, int use_weight)
     printf("The list is sorted.\n\n");
 }
 
-/* The core comparison function. */
-
-//Credit Professor Gerber - Integer sorts template
 int repartition(monster *list, int low_index, int high_index, int *comparisons, int *swaps, int use_name, int use_weight)
 {
-    //YOUR CODE GOES HERE.
-
     monster* pivot_value = &list[high_index]; //Pivot value is last value in our list
 
     int i = low_index;
@@ -127,7 +110,6 @@ int repartition(monster *list, int low_index, int high_index, int *comparisons, 
 
 void quick_sort_recursive(monster *list, int low_index, int high_index, int *comparisons, int *swaps, int use_name, int use_weight)
 {
-    // YOUR CODE GOES HERE.
     int pivot_index = repartition(list, low_index, high_index, comparisons, swaps, use_name, use_weight);
     if(pivot_index-1 > low_index) quick_sort_recursive(list, low_index, pivot_index-1, comparisons, swaps, use_name, use_weight); //Sorts values lower than pivot index
     if(high_index > pivot_index+1) quick_sort_recursive(list, pivot_index+1, high_index, comparisons, swaps, use_name, use_weight); //Sorts values greater than pivot index
@@ -152,8 +134,6 @@ void quick_sort(monster *list, int n, int use_name, int use_weight)
 }
 
 /* Implement ascending bubble sort. */
-
-//Credit Professor Gerber - Integer sorts template
 void bubble_sort(monster *list, int n, int use_name, int use_weight)
 {
     int i;
@@ -167,7 +147,6 @@ void bubble_sort(monster *list, int n, int use_name, int use_weight)
 
     start_cpu = clock();
 
-    // YOUR CODE GOES HERE.
 
         for(i = n-1; i >= 0; i--) // Runs for number of elements in list, n-1 though since the last index is 1 less than total elements
         {
@@ -191,11 +170,8 @@ void bubble_sort(monster *list, int n, int use_name, int use_weight)
 }
 
 /* Highest-value finder for selection sort. */
-
-//Credit Professor Gerber - Integer sorts template
 int find_highest(monster *list, int n, int *comparisons, int use_name, int use_weight)
 {
-    // YOUR CODE GOES HERE.
     monster* temp = malloc(sizeof(monster));
     monster* highest_val = &temp;
     int highest_loc;
@@ -232,8 +208,6 @@ void selection_sort(monster *list, int n, int use_name, int use_weight)
     printf("\nSelection sort %d monsters by %s...\n", n, use_name ? "name" : "weight");
     start_cpu = clock();
 
-    // YOUR CODE GOES HERE.
-
         for(i = n-1; i > 0; i--) // Starts loop at end of list so we can put highest value at the end.
         {
             highest = find_highest(list, i, &comparisons, use_name, use_weight);
@@ -253,7 +227,6 @@ void selection_sort(monster *list, int n, int use_name, int use_weight)
 
 int insertion_sort_find_position(monster *list, int low_index, int high_index, monster *k, int *comparisons, int use_name, int use_weight)
 {
-    //YOUR CODE GOES HERE.
     int i;
     int temp2;
     monster* key;
@@ -278,7 +251,6 @@ int insertion_sort_find_position(monster *list, int low_index, int high_index, m
 
 void insertion_sort_internal(monster *list, int n, int *comparisons, int *copies, int *block_copies, int use_name, int use_weight)
 {
-  // YOUR CODE GOES HERE. //Main insertion sort code
     int temp;
     monster temp2;
 
@@ -320,13 +292,8 @@ void insertion_sort(monster *list, int n, int use_name, int use_weight)
 
   return;
 }
-
-/* Merge function for merge sort.  Merges sub-arrays [l1..h1] and [l2..h2].
-   Must have l2 = l1 + 1 or bad things will happen. */
-
 void merge_sort_merge(monster *list, int l1, int h1, int l2, int h2, int *comparisons, int *copies, int *block_copies, int *mallocs, int use_name, int use_weight)
 {
-  //YOUR CODE GOES HERE.
     int size1 = (h1 - l1 + 1);
     int size2 = (h2 - l2 + 1);
     monster* left = malloc(sizeof(monster) * size1); //Creates two monster array to temporarily split up our unsorted list
@@ -389,7 +356,6 @@ void merge_sort_merge(monster *list, int l1, int h1, int l2, int h2, int *compar
 
 void merge_sort_recursive(monster *list, int low_index, int high_index, int *comparisons, int *copies, int *block_copies, int *mallocs, int use_name, int use_weight)
 {
-  // YOUR CODE GOES HERE.
   int middle_index;
   if(low_index != high_index){
     middle_index = (low_index + (high_index - 1) )/2;
@@ -426,7 +392,6 @@ void merge_sort(monster *list, int n, int use_name, int use_weight)
 
 void merge_insertion_sort_recursive(monster *list, int low_index, int high_index, int *comparisons, int *copies, int *block_copies, int *mallocs, int use_name, int use_weight)
 {
-  // YOUR CODE GOES HERE.
   if(low_index < high_index){
 
     if(high_index - low_index <= 50){ //Uses the threshold of 50 to use insertion sort
