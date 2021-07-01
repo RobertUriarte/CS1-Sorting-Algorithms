@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\robzt\desktop\code\assignment 3\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1615919632 source:c:\users\robzt\desktop\code\assignment 3\integer-sorts-template.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<limits.h>
+	<string.h>
+	<time.h>
+
+1616683631 source:c:\users\robzt\desktop\code\assignment 3\monster-sorts-template.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<limits.h>
+	<string.h>
+	<time.h>
+
+1616802508 source:c:\users\robzt\desktop\code\assignment 3\cop3502-as3-uriarte-robert.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<limits.h>
+	<string.h>
+	<time.h>
+
